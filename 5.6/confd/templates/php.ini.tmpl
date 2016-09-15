@@ -1,0 +1,42 @@
+;;;;;;;;;;;;;;;;;;;;
+; php.ini Options  ;
+;;;;;;;;;;;;;;;;;;;;
+
+short_open_tag = Off
+output_buffering = {{ getenv "PHPFPM_OUTPUT_BUFFERING" }}
+allow_call_time_pass_reference = Off
+variables_order = "GPCS"
+request_order = "GP"
+register_long_arrays = Off
+register_argc_argv = Off
+magic_quotes_gpc = Off
+enable_dl = Off
+allow_url_fopen = On
+realpath_cache_size = {{ getenv "PHPFPM_REALPATH_CACHE_SIZE" }}
+realpath_cache_ttl = {{ getenv "PHPFPM_REALPATH_CACHE_TTL" }}
+disable_functions =
+include_path = ".:/usr/share/pear:/usr/share/php"
+max_execution_time = {{ getenv "PHPFPM_MAX_EXECUTION_TIME" }}
+max_input_time = {{ getenv "PHPFPM_MAX_INPUT_TIME" }}
+max_input_vars = {{ getenv "PHPFPM_MAX_INPUT_VARS" }}
+memory_limit = {{ getenv "PHPFPM_MEMORY_LIMIT" }}
+error_reporting = {{ getenv "PHPFPM_ERROR_REPORTING" }}
+ignore_repeated_errors = on
+html_errors = off
+display_errors = {{ getenv "PHPFPM_DISPLAY_ERRORS" }}
+log_errors = {{ getenv "PHPFPM_LOG_ERRORS" }}
+error_log = /etc/php/php-fpm.log
+upload_max_filesize = {{ getenv "PHPFPM_UPLOAD_MAX_FILESIZE" }}
+post_max_size = {{ getenv "PHPFPM_POST_MAX_SIZE" }}
+default_charset = "UTF-8"
+cgi.fix_pathinfo = 0
+date.timezone = {{ getenv "PHPFPM_DATE_TIMEZONE" }}
+opcache.enable = {{ getenv "PHPFPM_OPCACHE_ENABLE" }}
+opcache.enable_cli = {{ getenv "PHPFPM_OPCACHE_ENABLE_CLI" }}
+opcache.memory_consumption = {{ getenv "PHPFPM_OPCACHE_MEMORY_CONSUMPTION" }}
+opcache.interned_strings_buffer = 8
+opcache.max_accelerated_files = 4000
+opcache.max_wasted_percentage= 5
+opcache.use_cwd = 1
+opcache.validate_timestamps = {{ getenv "PHPFPM_OPCACHE_VALIDATE_TIMESTAMPS" }}
+opcache.fast_shutdown = {{ getenv "PHPFPM_FAST_SHUTDOWN" }}

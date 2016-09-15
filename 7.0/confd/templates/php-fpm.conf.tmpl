@@ -1,0 +1,33 @@
+;;;;;;;;;;;;;;;;;;;;;
+; FPM Configuration ;
+;;;;;;;;;;;;;;;;;;;;;
+
+[global]
+pid = /usr/local/var/run/php-fpm.pid
+error_log = /etc/php/php-fpm.log
+daemonize = no
+
+;;;;;;;;;;;;;;;;;;;;
+; Pool Definitions ;
+;;;;;;;;;;;;;;;;;;;;
+
+[www]
+user = ash
+group = ash
+listen = [::]:{{ getenv "PHPFPM_LISTEN_PORT" }}
+listen.owner = ash
+listen.group = ash
+listen.mode = 0660
+access.log = /etc/php/php-fpm.log
+pm = {{ getenv "PHPFPM_PM_MODE" }}
+pm.max_children = {{ getenv "PHPFPM_PM_MAX_CHILDREN" }}
+pm.start_servers = {{ getenv "PHPFPM_PM_START_SERVERS" }}
+pm.min_spare_servers = {{ getenv "PHPFPM_PM_MIN_SPARE_SERVERS" }}
+pm.max_spare_servers = {{ getenv "PHPFPM_PM_MAX_SPARE_SERVERS" }}
+pm.max_requests = {{ getenv "PHPFPM_PM_MAX_REQUESTS" }}
+pm.status_path = /status
+ping.path = /ping
+ping.response = pong
+clear_env = no
+catch_workers_output = yes
+chdir = /src

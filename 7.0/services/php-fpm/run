@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# run service
+exec /usr/local/sbin/php-fpm -c /etc/php/ -y /etc/php/php-fpm.conf
